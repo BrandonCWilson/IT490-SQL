@@ -23,4 +23,12 @@ VALUES 	("live"),
 
 INSERT INTO Twitch_Data (startedAt, title, viewerCount, streamType, language, thumbnailURL, userID, gameID)
 
-VALUES ("time", "title", 5, "", "language", "thumbnailURL.com/image", "userID", "LeagueOfLegends");
+VALUES ("time", "title", 5, "", "language", "thumbnailURL.com/image", "dummytwitch", "LeagueOfLegends");
+
+INSERT INTO Twitch_Data (startedAt, title, viewerCount, streamType, language, thumbnailURL, userID, gameID)
+
+VALUES ("time", "my stream title", 22, "live", "english", "url.com", "secretTwitchID", "LeagueOfLegends");
+
+INSERT INTO Twitch_Data (startedAt, title, viewerCount, streamType, language, thumbnailURL, userID, gameID)
+
+VALUES ("time", "incredible streamer does things", 3200, "vodcast", "french", "www.website.com/image.png", "testtwitch", "LeagueOfLegends");
