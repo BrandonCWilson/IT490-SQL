@@ -248,7 +248,7 @@ CREATE TABLE `Users` (
   `password` varchar(255) NOT NULL,
   `tokenID` varchar(255) DEFAULT NULL,
   `isActive` tinyint(1) NOT NULL DEFAULT '0',
-  `lastActivity` int(11) NOT NULL,
+  `lastActivity` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `twitchID` varchar(255) DEFAULT NULL,
   `summonerID` int(11) DEFAULT NULL,
   PRIMARY KEY (`email`),
@@ -265,7 +265,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES ('dummy@data.com','securepassword','dummytoken',0,1519515397,'dummytwitch',5),('not@twitch.com','pass','token',0,1519515424,NULL,NULL),('secret@agent.com','topsecretpasswd','secretToken',0,1519515397,'secretTwitchID',6),('test@test.com','testpasswd','testtoken',0,1519515397,'testtwitch',7);
+INSERT INTO `Users` VALUES ('dummy@data.com','securepassword','dummytoken',0,'2018-02-25 01:17:48','dummytwitch',5),('not@twitch.com','pass','token',0,'2018-02-25 01:17:48',NULL,NULL),('secret@agent.com','topsecretpasswd','secretToken',0,'2018-02-25 01:17:48','secretTwitchID',6),('test@test.com','testpasswd','testtoken',0,'2018-02-25 01:17:48','testtwitch',7);
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -278,4 +278,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-24 19:30:29
+-- Dump completed on 2018-02-24 20:18:29
