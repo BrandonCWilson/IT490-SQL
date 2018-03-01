@@ -5,9 +5,6 @@ CREATE TABLE Matches_Data
 	gameMode varchar(255),
 	mapID int,
 	gameType varchar(255),
-	bannedChamps int /* Make a new table to accomodate ban lists. Int will be the matchID*/,
-	observers int /* Make a new table to accomodate observer lists. */,
-	participants int /* Make a new table to accomodate participant lists. */,
 	gameLength int,
 
 	PRIMARY KEY (gameID));
@@ -31,6 +28,6 @@ CREATE TABLE Matches_Observers
 	FOREIGN KEY (gameID) REFERENCES Matches_Data(gameID));
 
 
-INSERT INTO Matches_Data (gameID, gameStartTime, platformID, gameMode, mapID, gameType, bannedChamps, observers, participants, gameLength)
+INSERT INTO Matches_Data (gameID, gameStartTime, platformID, gameMode, mapID, gameType, gameLength)
 
-VALUES (1, 1, "test", "test", 1, "test", 1, 1, 1, 1);
+VALUES (1, 1, "test", "test", 1, "test", 1);
