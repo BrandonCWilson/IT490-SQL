@@ -16,7 +16,9 @@ CREATE TABLE Matches_Data
 
 CREATE TABLE Matches_BannedChamps
 	(gameID int unsigned,
-	bannedChamp int,
+	pickTurn int,
+	championId int,
+	teamId int,
 
 	FOREIGN KEY (gameID) REFERENCES Matches_Data(gameID));
 
