@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS LoL_Data;
+
 CREATE TABLE LoL_Data
 	(rank varchar(255),
 	wins int unsigned,

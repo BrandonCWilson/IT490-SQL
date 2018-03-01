@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS Users;
+
 CREATE TABLE Users 
 	(email varchar(64) not null,
 	password varchar(255) not null,

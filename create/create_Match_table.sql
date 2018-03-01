@@ -1,3 +1,8 @@
+DROP TABLE IF EXISTS Matches_Observers;
+DROP TABLE IF EXISTS Matches_Participants;
+DROP TABLE IF EXISTS Matches_BannedChamps;
+DROP TABLE IF EXISTS Matches_Data;
+
 CREATE TABLE Matches_Data
 	(gameID int unsigned,
 	gameStartTime int unsigned,
@@ -23,7 +28,7 @@ CREATE TABLE Matches_Participants
 
 CREATE TABLE Matches_Observers
 	(gameID int unsigned,
-	observer int unsigned,
+	observer varchar(255),
 
 	FOREIGN KEY (gameID) REFERENCES Matches_Data(gameID));
 

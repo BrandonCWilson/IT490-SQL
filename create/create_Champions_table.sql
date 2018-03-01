@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS Champions_Data;
+
 CREATE TABLE Champions_Data
 	(
 	championName varchar(255),

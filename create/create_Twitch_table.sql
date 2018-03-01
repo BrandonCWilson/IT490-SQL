@@ -1,3 +1,6 @@
+DROP TABLE IF EXISTS Twitch_Data;
+DROP TABLE IF EXISTS Twitch_StreamTypes;
+
 CREATE TABLE Twitch_StreamTypes
 	(streamType varchar(255),
 	PRIMARY KEY (streamType));
