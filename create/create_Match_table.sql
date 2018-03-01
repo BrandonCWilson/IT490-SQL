@@ -28,7 +28,7 @@ CREATE TABLE Matches_Participants
 
 CREATE TABLE Matches_Observers
 	(gameID int unsigned,
-	observer varchar(255),
+	encryptionKey varchar(255),
 
 	FOREIGN KEY (gameID) REFERENCES Matches_Data(gameID));
 

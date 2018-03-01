@@ -139,7 +139,7 @@ DROP TABLE IF EXISTS `Matches_Observers`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Matches_Observers` (
   `gameID` int(10) unsigned DEFAULT NULL,
-  `observer` varchar(255) DEFAULT NULL,
+  `encryptionKey` varchar(255) DEFAULT NULL,
   KEY `gameID` (`gameID`),
   CONSTRAINT `Matches_Observers_ibfk_1` FOREIGN KEY (`gameID`) REFERENCES `Matches_Data` (`gameID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -275,4 +275,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-01 16:46:16
+-- Dump completed on 2018-03-01 16:54:41
