@@ -11,8 +11,9 @@ CREATE TABLE Users
 	summonerID int unique,
 
 	ratingCount int default 0,
-	averageRating float,
-	
+	averageRating float default 0,
+
+	streamerSchedule varchar(2048),
 	PRIMARY KEY (email),
 	FOREIGN KEY (twitchID) REFERENCES Twitch_Data(userID),
 	FOREIGN KEY (summonerID) REFERENCES LoL_Data(accountID));
@@ -30,5 +31,5 @@ INSERT INTO Users
 VALUES ('test@test.com', 'testpasswd', 7, 'testtwitch', 'testtoken', CURRENT_TIMESTAMP);
 
 INSERT INTO Users
-	(email,	password, tokenID, lastActivity)
-VALUES ('not@twitch.com', 'pass', 'token', CURRENT_TIMESTAMP);
+	(email,	password, tokenID, lastActivity, streamerSchedule)
+VALUES ('not@twitch.com', 'pass', 'token', CURRENT_TIMESTAMP, 'I stream on mondays from 8-11am because I hate myself.');

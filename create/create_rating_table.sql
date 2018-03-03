@@ -5,7 +5,7 @@ CREATE TABLE StreamerRatings
 	twitchID varchar(255),
 	userEmail varchar(255),
 	rating float unsigned,
-	userComment varchar(255),
+	userComment varchar(2048),
 	timeCreated timestamp not null default CURRENT_TIMESTAMP,
 
 	PRIMARY KEY (ratingID),
