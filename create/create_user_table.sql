@@ -14,6 +14,10 @@ CREATE TABLE Users
 	averageRating float default 0,
 
 	streamerSchedule varchar(2048),
+
+	lastNotified timestamp default CURRENT_TIMESTAMP,
+	isStreaming bool default false,
+
 	PRIMARY KEY (email),
 	FOREIGN KEY (twitchID) REFERENCES Twitch_Data(userID),
 	FOREIGN KEY (summonerID) REFERENCES LoL_Data(accountID));
