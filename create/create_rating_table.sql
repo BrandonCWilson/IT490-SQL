@@ -1,12 +1,14 @@
 DROP TABLE IF EXISTS StreamerRatings;
 
 CREATE TABLE StreamerRatings
-	(twitchID varchar(255),
+	(ratingID int AUTO_INCREMENT not null,
+	twitchID varchar(255),
 	userEmail varchar(255),
 	rating float unsigned,
 	userComment varchar(255),
+	timeCreated timestamp not null default CURRENT_TIMESTAMP,
 
-	PRIMARY KEY (twitchID, userEmail),
+	PRIMARY KEY (ratingID),
 	FOREIGN KEY (twitchID) REFERENCES Twitch_Data(userID),
 	FOREIGN KEY (userEmail) REFERENCES Users(email));
 

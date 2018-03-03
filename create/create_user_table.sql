@@ -9,6 +9,9 @@ CREATE TABLE Users
 
 	twitchID varchar(255) unique,
 	summonerID int unique,
+
+	ratingCount int default 0,
+	averageRating float,
 	
 	PRIMARY KEY (email),
 	FOREIGN KEY (twitchID) REFERENCES Twitch_Data(userID),
