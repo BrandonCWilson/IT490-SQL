@@ -15,7 +15,6 @@ CREATE TABLE Twitch_Data
 	userID varchar(255) unique,
 	gameID varchar(255),
 
-
 	FOREIGN KEY (streamType) REFERENCES Twitch_StreamTypes(streamType));
 
 INSERT INTO Twitch_StreamTypes (streamType)
