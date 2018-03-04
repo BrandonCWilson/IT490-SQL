@@ -190,15 +190,15 @@ DROP TABLE IF EXISTS `StreamerRatings`;
 CREATE TABLE `StreamerRatings` (
   `ratingID` int(11) NOT NULL AUTO_INCREMENT,
   `twitchID` varchar(255) DEFAULT NULL,
-  `userEmail` varchar(255) DEFAULT NULL,
+  `personalID` int(11) DEFAULT NULL,
   `rating` float unsigned DEFAULT NULL,
   `userComment` varchar(2048) DEFAULT NULL,
   `timeCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ratingID`),
+  KEY `personalID` (`personalID`),
   KEY `twitchID` (`twitchID`),
-  KEY `userEmail` (`userEmail`),
-  CONSTRAINT `StreamerRatings_ibfk_1` FOREIGN KEY (`twitchID`) REFERENCES `Twitch_Data` (`userID`),
-  CONSTRAINT `StreamerRatings_ibfk_2` FOREIGN KEY (`userEmail`) REFERENCES `Users` (`email`)
+  CONSTRAINT `StreamerRatings_ibfk_1` FOREIGN KEY (`personalID`) REFERENCES `Users` (`personalID`),
+  CONSTRAINT `StreamerRatings_ibfk_2` FOREIGN KEY (`twitchID`) REFERENCES `Twitch_Data` (`userID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -208,7 +208,7 @@ CREATE TABLE `StreamerRatings` (
 
 LOCK TABLES `StreamerRatings` WRITE;
 /*!40000 ALTER TABLE `StreamerRatings` DISABLE KEYS */;
-INSERT INTO `StreamerRatings` VALUES (1,'dummytwitch','dummy@data.com',5,'Wow your stream is really great','2018-03-03 22:35:50');
+INSERT INTO `StreamerRatings` VALUES (1,'dummytwitch',1,5,'Wow your stream is really great','2018-03-04 01:15:29');
 /*!40000 ALTER TABLE `StreamerRatings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,6 +275,7 @@ DROP TABLE IF EXISTS `Users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Users` (
+  `personalID` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(64) NOT NULL,
   `password` varchar(255) NOT NULL,
   `tokenID` varchar(255) DEFAULT NULL,
@@ -287,12 +288,12 @@ CREATE TABLE `Users` (
   `streamerSchedule` varchar(2048) DEFAULT NULL,
   `lastNotified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `isStreaming` tinyint(1) DEFAULT '0',
-  PRIMARY KEY (`email`),
+  PRIMARY KEY (`personalID`),
   UNIQUE KEY `twitchID` (`twitchID`),
   UNIQUE KEY `summonerID` (`summonerID`),
   CONSTRAINT `Users_ibfk_1` FOREIGN KEY (`twitchID`) REFERENCES `Twitch_Data` (`userID`),
   CONSTRAINT `Users_ibfk_2` FOREIGN KEY (`summonerID`) REFERENCES `LoL_Data` (`accountID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -301,7 +302,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES ('dummy@data.com','securepassword','dummytoken',0,'2018-03-03 22:35:15','dummytwitch',5,0,0,NULL,'2018-03-03 22:35:15',0),('not@twitch.com','pass','token',0,'2018-03-03 22:35:15',NULL,NULL,0,0,'I stream on mondays from 8-11am because I hate myself.','2018-03-03 22:35:15',0),('secret@agent.com','topsecretpasswd','secretToken',0,'2018-03-03 22:35:15','secretTwitchID',6,0,0,NULL,'2018-03-03 22:35:15',0),('test@test.com','testpasswd','testtoken',0,'2018-03-03 22:35:15','testtwitch',7,0,0,NULL,'2018-03-03 22:35:15',0);
+INSERT INTO `Users` VALUES (1,'dummy@data.com','securepassword','dummytoken',0,'2018-03-04 01:08:57','dummytwitch',5,0,0,NULL,'2018-03-04 01:08:57',0),(2,'secret@agent.com','topsecretpasswd','secretToken',0,'2018-03-04 01:08:57','secretTwitchID',6,0,0,NULL,'2018-03-04 01:08:57',0),(3,'test@test.com','testpasswd','testtoken',0,'2018-03-04 01:08:57','testtwitch',7,0,0,NULL,'2018-03-04 01:08:57',0),(4,'not@twitch.com','pass','token',0,'2018-03-04 01:08:57',NULL,NULL,0,0,'I stream on mondays from 8-11am because I hate myself.','2018-03-04 01:08:57',0);
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -315,12 +316,12 @@ DROP TABLE IF EXISTS `Watching`;
 CREATE TABLE `Watching` (
   `watchID` int(11) NOT NULL AUTO_INCREMENT,
   `watchedTwitchID` varchar(255) NOT NULL,
-  `viewerEmail` varchar(255) NOT NULL,
+  `viewerPersonalID` int(11) DEFAULT NULL,
   PRIMARY KEY (`watchID`),
   KEY `watchedTwitchID` (`watchedTwitchID`),
-  KEY `viewerEmail` (`viewerEmail`),
+  KEY `viewerPersonalID` (`viewerPersonalID`),
   CONSTRAINT `Watching_ibfk_1` FOREIGN KEY (`watchedTwitchID`) REFERENCES `Twitch_Data` (`userID`),
-  CONSTRAINT `Watching_ibfk_2` FOREIGN KEY (`viewerEmail`) REFERENCES `Users` (`email`)
+  CONSTRAINT `Watching_ibfk_2` FOREIGN KEY (`viewerPersonalID`) REFERENCES `Users` (`personalID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -330,7 +331,7 @@ CREATE TABLE `Watching` (
 
 LOCK TABLES `Watching` WRITE;
 /*!40000 ALTER TABLE `Watching` DISABLE KEYS */;
-INSERT INTO `Watching` VALUES (1,'dummytwitch','test@test.com');
+INSERT INTO `Watching` VALUES (1,'dummytwitch',1);
 /*!40000 ALTER TABLE `Watching` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -343,4 +344,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-03 19:23:20
+-- Dump completed on 2018-03-03 20:46:56
