@@ -1,7 +1,9 @@
 DROP TABLE IF EXISTS Users;
 
 CREATE TABLE Users 
-	(email varchar(64) not null,
+	(
+	personalID int AUTO_INCREMENT not null,
+	email varchar(64) not null,
 	password varchar(255) not null,
 	tokenID varchar(255),
 	isActive bool not null default false,
@@ -18,7 +20,7 @@ CREATE TABLE Users
 	lastNotified timestamp default CURRENT_TIMESTAMP,
 	isStreaming bool default false,
 
-	PRIMARY KEY (email),
+	PRIMARY KEY (personalID),
 	FOREIGN KEY (twitchID) REFERENCES Twitch_Data(userID),
 	FOREIGN KEY (summonerID) REFERENCES LoL_Data(accountID));
 
